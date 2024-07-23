@@ -1,0 +1,450 @@
+---
+title: "Basic R Tutorial"
+author: "Theerayut, Chotika"
+date: "2024-07-23"
+output: html_document
+---
+
+# Introduction to R Programming
+
+## What is R?
+
+R is a programming language for statistical computing and data visualization. It has been adopted in the fields of data mining, bioinformatics, and data analysis. The core R language is augmented by a large number of extension packages, containing reusable code, documentation, and sample data.
+
+## Installing R and RStudio
+
+1.  Download R from [CRAN](https://cran.r-project.org/)
+2.  Download RStudio from [RStudio](https://rstudio.com/products/rstudio/download/)
+3.  Install R first, then RStudio
+
+## RStudio Interface
+
+RStudio consists of: - **Console**: Where you can type and execute R commands. - **Source Editor**: Where you can write and save scripts. - **Environment/History**: Where you can view and manage your workspace. - **Plots/Packages/Help/Viewer**: Various tools for visualization, package management, and help documentation.
+
+## Basic Syntax and Data Types
+
+### Basic Syntax
+
+``` r
+print('Hello world!')
+```
+
+``` r
+# This is a comment
+x <- 10  # Assigning a value to a variable
+print(x)  # Print the value of x
+
+# Simple math operations
+a <- 5 + 2
+b <- a * 3
+c <- b / a
+d <- c - 1
+print(d)
+```
+
+### Data Types
+
+``` r
+# Numeric
+num <- 10.5
+print(class(num))
+
+# Integer
+int <- 10L
+print(class(int))
+
+# Character
+char <- "Hello"
+print(class(char))
+
+# Logical
+logi <- TRUE
+print(class(logi))
+```
+
+## Variables
+
+``` r
+a <- 5  # Creating a variable
+b <- "Data Science"
+c <- TRUE
+
+print(a)
+print(b)
+print(c)
+```
+
+Variable names must start with a letter and can include letters, numbers, underscores, and periods.
+
+## Vectors
+
+``` r
+v <- c(1, 2, 3, 4)  # Creating a vector
+print(v)
+
+# Accessing elements
+print(v[1])
+print(v[2:4])
+
+# Vector operations
+v2 <- c(5, 6, 7, 8)
+sum_v <- v + v2
+print(sum_v)
+
+product_v <- v * 2
+print(product_v)
+```
+
+## Matrices
+
+``` r
+# Creating a matrix
+m <- matrix(1:9, nrow=3, ncol=3)
+print(m)
+
+# Accessing elements
+print(m[1, 2])
+print(m[, 1])
+print(m[2, ])
+
+# Matrix operations
+m2 <- matrix(9:1, nrow=3, ncol=3)
+sum_m <- m + m2
+print(sum_m)
+
+product_m <- m * 2
+print(product_m)
+```
+
+## Lists
+
+``` r
+# Creating a list
+l <- list(name="John", age=25, scores=c(85, 90, 88))
+print(l)
+
+# Accessing elements
+print(l$name)
+print(l[[2]])
+print(l$scores)
+```
+
+## Data Frames
+
+``` r
+# Creating a data frame
+df <- data.frame(name=c("John", "Jane"), age=c(25, 30), scores=c(85, 90))
+print(df)
+
+# Accessing elements
+print(df$name)
+print(df[1, ])
+print(df[1, "age"])
+print(df[df$age > 25, ])
+```
+
+## Basic Operations
+
+### Arithmetic
+
+``` r
+add <- 5 + 3
+subtract <- 8 - 2
+multiply <- 4 * 3
+divide <- 16 / 4
+
+print(add)
+print(subtract)
+print(multiply)
+print(divide)
+```
+
+### Relational
+
+``` r
+greater <- 5 > 3
+equal <- 4 == 4
+not_equal <- 7 != 6
+
+print(greater)
+print(equal)
+print(not_equal)
+```
+
+### Logical
+
+``` r
+and <- TRUE & FALSE
+or <- TRUE | FALSE
+not <- !TRUE
+
+print(and)
+print(or)
+print(not)
+```
+
+## Loop
+
+``` r
+# If statement
+num <- 3
+if (num > 0) {
+  print("The number is positive.")
+} else if (num < 0) {
+  print("The number is negative.")
+} else {
+  print("The number is zero.")
+}
+
+# For loop
+for (i in 1:5) {
+  print(i)
+}
+
+# While loop
+sum <- 0
+count <- 1
+while (count <= 5) {
+  sum <- sum + count
+  count <- count + 1
+}
+print(sum)
+```
+
+## Functions and Packages
+
+### Creating Functions
+
+``` r
+# Defining a function
+my_function <- function(x, y) {
+  result <- x + y
+  return(result)
+}
+
+# Using the function
+output <- my_function(4, 5)
+print(output)
+```
+
+### Installing and Loading Packages
+
+``` r
+# Installing a package
+install.packages("dplyr")
+
+# Loading a package
+library(dplyr)
+
+# Using a function from the package
+sample_data <- tibble(
+  id = 1:5,
+  score = c(90, 85, 88, 95, 92)
+)
+print(sample_data)
+```
+
+Cheat sheet (dplyr): <https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf>
+
+## Data Import and Export
+
+### Reading Data
+
+``` r
+# Reading a CSV file
+data <- read.csv("sample_data.csv")
+print(head(data))
+```
+
+### Writing Data
+
+``` r
+# Writing to a CSV file
+write.csv(data, "output_data.csv")
+```
+
+## Data Manipulation
+
+### Subsetting
+
+``` r
+# Subsetting data
+subset_data <- data[data$age > 25, ]
+print(subset_data)
+```
+
+### Using dplyr
+
+``` r
+library(dplyr)
+
+# Filtering rows
+filtered_data <- filter(data, age > 25)
+print(filtered_data)
+
+# Selecting columns
+selected_data <- select(data, name, age)
+print(selected_data)
+
+# Adding new variables
+mutated_data <- mutate(data, age_next_year = age + 1)
+print(mutated_data)
+
+# Summarizing data
+summary_data <- summarise(data, mean_age = mean(age))
+print(summary_data)
+```
+
+## Data Visualization
+
+### Basic Plots
+
+``` r
+# Creating a basic plot
+x <- c(1, 2, 3, 4, 5)
+y <- c(2, 3, 5, 7, 11)
+plot(x, y, type="b", col="blue", main="Basic Plot", xlab="X-Axis", ylab="Y-Axis")
+```
+
+### Using ggplot2
+
+``` r
+library(ggplot2)
+
+# Creating a scatter plot
+ggplot(data, aes(x=age, y=scores)) +
+  geom_point() +
+  ggtitle("Scatter Plot") +
+  xlab("Age") +
+  ylab("Scores")
+```
+
+## Basic Statistical Analysis
+
+### Descriptive Statistics
+
+``` r
+mean_age <- mean(data$age)
+sd_age <- sd(data$age)
+median_score <- median(data$scores)
+
+print(mean_age)
+print(sd_age)
+print(median_score)
+```
+
+### Hypothesis Testing
+
+``` r
+t_test_result <- t.test(data$age ~ data$group)
+print(t_test_result)
+```
+
+### Correlation and Regression
+
+``` r
+correlation <- cor(data$age, data$scores)
+print(correlation)
+
+# Linear regression
+model <- lm(scores ~ age, data=data)
+print(summary(model))
+
+# Plotting the regression line
+ggplot(data, aes(x=age, y=scores)) +
+  geom_point() +
+  geom_smooth(method="lm", col="red") +
+  ggtitle("Linear Regression") +
+  xlab("Age") +
+  ylab("Scores")
+```
+
+------------------------------------------------------------------------
+
+### Data Cleaning and Visualization in R
+
+1.  **Load the necessary libraries:**
+
+``` r
+# Install the necessary packages if you haven't already
+install.packages(c("tidyverse", "ggplot2"))
+
+# Load the libraries
+library(tidyverse)
+library(ggplot2)
+```
+
+2.  **Read the dataset:**
+
+``` r
+# Replace 'your_dataset.csv' with the path to your actual dataset
+df <- read.csv('your_dataset.csv')
+```
+
+3.  **Remove missing values:**
+
+``` r
+# Remove rows with missing values
+df_clean <- df %>% drop_na()
+
+# Alternatively, if you want to remove missing values from specific columns only:
+df_clean <- df %>% drop_na(Scores, Income)
+```
+
+4.  **Correct data types:**
+
+``` r
+# Convert columns to appropriate data types
+df_clean <- df_clean %>%
+  mutate(
+    ID = as.integer(ID),
+    Name = as.character(Name),
+    Age = as.integer(Age),
+    Height = as.numeric(Height),
+    Weight = as.numeric(Weight),
+    Gender = as.factor(Gender),
+    Income = as.numeric(Income),
+    Scores = as.numeric(Scores)
+  )
+```
+
+5.  **Visualization:**
+
+    -   **Histogram of Age:**
+
+    ``` r
+    ggplot(df_clean, aes(x = Age)) +
+      geom_histogram(binwidth = 5, fill = "blue", color = "black") +
+      labs(title = "Distribution of Age", x = "Age", y = "Frequency")
+    ```
+
+    -   **Boxplot of Income by Gender:**
+
+    ``` r
+    ggplot(df_clean, aes(x = Gender, y = Income, fill = Gender)) +
+      geom_boxplot() +
+      labs(title = "Income Distribution by Gender", x = "Gender", y = "Income")
+    ```
+
+    -   **Scatter plot of Height vs. Weight:**
+
+    ``` r
+    ggplot(df_clean, aes(x = Height, y = Weight)) +
+      geom_point(aes(color = Gender)) +
+      labs(title = "Height vs. Weight", x = "Height", y = "Weight")
+    ```
+
+    -   **Bar plot of average Scores by Age group:**
+
+    ``` r
+    # Create Age groups
+    df_clean <- df_clean %>%
+      mutate(Age_Group = cut(Age, breaks = seq(15, 75, by = 10), right = FALSE, 
+                             labels = paste(seq(15, 65, by = 10), seq(24, 74, by = 10), sep = "-")))
+
+    ggplot(df_clean, aes(x = Age_Group, y = Scores, fill = Age_Group)) +
+      stat_summary(fun = mean, geom = "bar", position = "dodge") +
+      labs(title = "Average Scores by Age Group", x = "Age Group", y = "Average Scores")
+    ```
+
+Replace `'your_dataset.csv'` with the actual path to your dataset. You can adjust the visualization parameters as needed to better fit your data and analysis goals.
