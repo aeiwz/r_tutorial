@@ -1,7 +1,6 @@
 ---
 title: "Basic R Tutorial"
 output: html_document
-runtime: shiny
 ---
 
 # Introduction to R Programming
