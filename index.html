@@ -398,25 +398,253 @@ print(d)</code></pre>
 </div>
 <div id="data-types" class="section level3">
 <h3>Data Types</h3>
-<pre class="r"><code># Numeric
-num &lt;- 10.5
-print(class(num))
-
-# Integer
-int &lt;- 10L
-print(class(int))
-
-# Character
-char &lt;- &quot;Hello&quot;
-print(class(char))
-
-# Logical
+<blockquote>
+<p><strong>Definition</strong>: A numeric data type can store both
+integer and floating-point numbers but is stored as a double-precision
+floating-point by default in R.</p>
+</blockquote>
+<hr />
+<div id="integer" class="section level4">
+<h4>Integer</h4>
+<p>Integer data types represent whole numbers.</p>
+<pre class="r"><code># Integer type (with L suffix)
+int &lt;- 42L
+int</code></pre>
+<pre><code>## [1] 42</code></pre>
+<pre class="r"><code>typeof(int)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<blockquote>
+<p><strong>Definition</strong>: An integer data type is explicitly
+created by appending an ‘L’ to the number. It stores whole numbers
+without any decimal component.</p>
+</blockquote>
+<hr />
+</div>
+<div id="complex" class="section level4">
+<h4>Complex</h4>
+<p>Complex data types represent complex numbers with real and imaginary
+parts.</p>
+<pre class="r"><code># Complex type
+comp &lt;- 2 + 3i
+comp</code></pre>
+<pre><code>## [1] 2+3i</code></pre>
+<pre class="r"><code>typeof(comp)</code></pre>
+<pre><code>## [1] &quot;complex&quot;</code></pre>
+<blockquote>
+<p><strong>Definition</strong>: A complex data type can store numbers
+with both a real and an imaginary component.</p>
+</blockquote>
+<hr />
+</div>
+<div id="character" class="section level4">
+<h4>Character</h4>
+<p>Character data types represent text strings.</p>
+<pre class="r"><code># Character type
+char &lt;- &quot;Hello, R!&quot;
+char</code></pre>
+<pre><code>## [1] &quot;Hello, R!&quot;</code></pre>
+<pre class="r"><code>typeof(char)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<blockquote>
+<p><strong>Definition</strong>: A character data type stores sequences
+of characters or strings.</p>
+</blockquote>
+<hr />
+</div>
+<div id="logical" class="section level4">
+<h4>Logical</h4>
+<p>Logical data types represent boolean values.</p>
+<pre class="r"><code># Logical type
 logi &lt;- TRUE
-print(class(logi))</code></pre>
+logi</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>typeof(logi)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<blockquote>
+<p><strong>Definition</strong>: A logical data type stores boolean
+values: <code>TRUE</code> or <code>FALSE</code>.</p>
+</blockquote>
+<hr />
+</div>
+<div id="raw" class="section level4">
+<h4>Raw</h4>
+<p>Raw data types represent raw bytes.</p>
+<pre class="r"><code># Raw type
+raw_data &lt;- charToRaw(&quot;Hello&quot;)
+raw_data</code></pre>
+<pre><code>## [1] 48 65 6c 6c 6f</code></pre>
+<pre class="r"><code>typeof(raw_data)</code></pre>
+<pre><code>## [1] &quot;raw&quot;</code></pre>
+<blockquote>
+<p><strong>Definition</strong>: A raw data type stores bytes and is used
+for binary data manipulation.</p>
+</blockquote>
+<hr />
+</div>
+<div id="vectors" class="section level4">
+<h4>Vectors</h4>
+<p>Vectors are sequences of data elements of the same basic type.</p>
+<pre class="r"><code># Numeric vector
+num_vec &lt;- c(1.5, 2.5, 3.5)
+num_vec</code></pre>
+<pre><code>## [1] 1.5 2.5 3.5</code></pre>
+<pre class="r"><code>typeof(num_vec)</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<pre class="r"><code># Integer vector
+int_vec &lt;- c(1L, 2L, 3L)
+int_vec</code></pre>
+<pre><code>## [1] 1 2 3</code></pre>
+<pre class="r"><code>typeof(int_vec)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code># Character vector
+char_vec &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+char_vec</code></pre>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<pre class="r"><code>typeof(char_vec)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code># Logical vector
+logi_vec &lt;- c(TRUE, FALSE, TRUE)
+logi_vec</code></pre>
+<pre><code>## [1]  TRUE FALSE  TRUE</code></pre>
+<pre class="r"><code>typeof(logi_vec)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<blockquote>
+<p><strong>Definition</strong>: A vector is a basic data structure in R
+that holds elements of the same type (numeric, integer, character, or
+logical).</p>
+</blockquote>
+<hr />
+</div>
+<div id="lists" class="section level4">
+<h4>Lists</h4>
+<p>Lists are sequences of elements that can be of different types.</p>
+<pre class="r"><code># List type
+lst &lt;- list(1, &quot;a&quot;, TRUE)
+lst</code></pre>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] &quot;a&quot;
+## 
+## [[3]]
+## [1] TRUE</code></pre>
+<pre class="r"><code>typeof(lst)</code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<blockquote>
+<p><strong>Definition</strong>: A list is a data structure in R that can
+hold elements of different types (numbers, strings, vectors, etc.).</p>
+</blockquote>
+<hr />
+</div>
+<div id="factors" class="section level4">
+<h4>Factors</h4>
+<p>Factors are used to represent categorical data.</p>
+<pre class="r"><code># Factor type
+fctr &lt;- factor(c(&quot;low&quot;, &quot;medium&quot;, &quot;high&quot;))
+fctr</code></pre>
+<pre><code>## [1] low    medium high  
+## Levels: high low medium</code></pre>
+<pre class="r"><code>typeof(fctr)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<blockquote>
+<p><strong>Definition</strong>: A factor is used for categorical data
+and stores both the values and their levels.</p>
+</blockquote>
+<hr />
+</div>
+<div id="data-frames" class="section level4">
+<h4>Data Frames</h4>
+<p>Data frames are used to store tabular data.</p>
+<pre class="r"><code># Data Frame type
+df &lt;- data.frame(numbers = c(1, 2, 3), letters = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))
+df</code></pre>
+<pre><code>##   numbers letters
+## 1       1       a
+## 2       2       b
+## 3       3       c</code></pre>
+<pre class="r"><code>typeof(df)</code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<blockquote>
+<p><strong>Definition</strong>: A data frame is a table or 2-dimensional
+array-like structure in which each column contains values of one
+variable and each row contains a set of values from each column.</p>
+</blockquote>
+<hr />
+</div>
+<div id="matrices" class="section level4">
+<h4>Matrices</h4>
+<p>Matrices are 2-dimensional arrays with elements of the same type.</p>
+<pre class="r"><code># Matrix type
+mat &lt;- matrix(1:9, nrow = 3)
+mat</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+<pre class="r"><code>typeof(mat)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<blockquote>
+<p><strong>Definition</strong>: A matrix is a 2-dimensional array that
+holds elements of the same type, arranged in rows and columns.</p>
+</blockquote>
+<hr />
+</div>
+<div id="arrays" class="section level4">
+<h4>Arrays</h4>
+<p>Arrays are multi-dimensional generalizations of matrices.</p>
+<pre class="r"><code># Array type
+arr &lt;- array(1:8, dim = c(2, 2, 2))
+arr</code></pre>
+<pre><code>## , , 1
+## 
+##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+## 
+## , , 2
+## 
+##      [,1] [,2]
+## [1,]    5    7
+## [2,]    6    8</code></pre>
+<pre class="r"><code>typeof(arr)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<blockquote>
+<p><strong>Definition</strong>: An array is a data structure that can
+store data in more than two dimensions.</p>
+</blockquote>
+<hr />
+</div>
+<div id="date-and-time" class="section level4">
+<h4>Date and Time</h4>
+<p>Date and time types are used to store date and time information.</p>
+<pre class="r"><code># Date type
+dt &lt;- as.Date(&quot;2024-01-01&quot;)
+dt</code></pre>
+<pre><code>## [1] &quot;2024-01-01&quot;</code></pre>
+<pre class="r"><code>typeof(dt)</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<pre class="r"><code># POSIXct type (Date-time)
+dt_time &lt;- as.POSIXct(&quot;2024-01-01 12:34:56&quot;)
+dt_time</code></pre>
+<pre><code>## [1] &quot;2024-01-01 12:34:56 +07&quot;</code></pre>
+<pre class="r"><code>typeof(dt_time)</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<blockquote>
+<p><strong>Definition</strong>: Date and POSIXct types are used to
+handle date and time data, respectively. <code>Date</code> stores dates
+without times, and <code>POSIXct</code> stores both dates and times.
+```</p>
+</blockquote>
+<p>This R Markdown document provides a brief definition and example for
+each data type in R. When you knit this document, it will display the
+values and types of different data structures used in R, along with
+their definitions.</p>
 </div>
 </div>
-<div id="variables" class="section level2">
-<h2>Variables</h2>
+</div>
+<div id="variables-and-data-structures" class="section level2">
+<h2>Variables and Data Structures</h2>
 <pre class="r"><code>a &lt;- 5  # Creating a variable
 b &lt;- &quot;Data Science&quot;
 c &lt;- TRUE
@@ -427,7 +655,7 @@ print(c)</code></pre>
 <p>Variable names must start with a letter and can include letters,
 numbers, underscores, and periods.</p>
 </div>
-<div id="vectors" class="section level2">
+<div id="vectors-1" class="section level2">
 <h2>Vectors</h2>
 <pre class="r"><code>v &lt;- c(1, 2, 3, 4)  # Creating a vector
 print(v)
@@ -444,7 +672,7 @@ print(sum_v)
 product_v &lt;- v * 2
 print(product_v)</code></pre>
 </div>
-<div id="matrices" class="section level2">
+<div id="matrices-1" class="section level2">
 <h2>Matrices</h2>
 <pre class="r"><code># Creating a matrix
 m &lt;- matrix(1:9, nrow=3, ncol=3)
@@ -463,7 +691,7 @@ print(sum_m)
 product_m &lt;- m * 2
 print(product_m)</code></pre>
 </div>
-<div id="lists" class="section level2">
+<div id="lists-1" class="section level2">
 <h2>Lists</h2>
 <pre class="r"><code># Creating a list
 l &lt;- list(name=&quot;John&quot;, age=25, scores=c(85, 90, 88))
@@ -474,7 +702,7 @@ print(l$name)
 print(l[[2]])
 print(l$scores)</code></pre>
 </div>
-<div id="data-frames" class="section level2">
+<div id="data-frames-1" class="section level2">
 <h2>Data Frames</h2>
 <pre class="r"><code># Creating a data frame
 df &lt;- data.frame(name=c(&quot;John&quot;, &quot;Jane&quot;), age=c(25, 30), scores=c(85, 90))
@@ -512,7 +740,7 @@ print(less)
 print(equal)
 print(not_equal)</code></pre>
 </div>
-<div id="logical" class="section level3">
+<div id="logical-1" class="section level3">
 <h3>Logical</h3>
 <pre class="r"><code>and &lt;- TRUE &amp; FALSE
 or &lt;- TRUE | FALSE

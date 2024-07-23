@@ -42,25 +42,211 @@ print(d)
 
 ### Data Types
 
-``` r
-# Numeric
-num <- 10.5
-print(class(num))
+> **Definition**: A numeric data type can store both integer and floating-point numbers but is stored as a double-precision floating-point by default in R.
 
-# Integer
-int <- 10L
-print(class(int))
+------------------------------------------------------------------------
 
-# Character
-char <- "Hello"
-print(class(char))
+#### Integer
 
-# Logical
-logi <- TRUE
-print(class(logi))
+Integer data types represent whole numbers.
+
+```{r}
+# Integer type (with L suffix)
+int <- 42L
+int
+typeof(int)
 ```
 
-## Variables
+> **Definition**: An integer data type is explicitly created by appending an 'L' to the number. It stores whole numbers without any decimal component.
+
+------------------------------------------------------------------------
+
+#### Complex
+
+Complex data types represent complex numbers with real and imaginary parts.
+
+```{r}
+# Complex type
+comp <- 2 + 3i
+comp
+typeof(comp)
+```
+
+> **Definition**: A complex data type can store numbers with both a real and an imaginary component.
+
+------------------------------------------------------------------------
+
+#### Character
+
+Character data types represent text strings.
+
+```{r}
+# Character type
+char <- "Hello, R!"
+char
+typeof(char)
+```
+
+> **Definition**: A character data type stores sequences of characters or strings.
+
+------------------------------------------------------------------------
+
+#### Logical
+
+Logical data types represent boolean values.
+
+```{r}
+# Logical type
+logi <- TRUE
+logi
+typeof(logi)
+```
+
+> **Definition**: A logical data type stores boolean values: `TRUE` or `FALSE`.
+
+------------------------------------------------------------------------
+
+#### Raw
+
+Raw data types represent raw bytes.
+
+```{r}
+# Raw type
+raw_data <- charToRaw("Hello")
+raw_data
+typeof(raw_data)
+```
+
+> **Definition**: A raw data type stores bytes and is used for binary data manipulation.
+
+------------------------------------------------------------------------
+
+#### Vectors
+
+Vectors are sequences of data elements of the same basic type.
+
+```{r}
+# Numeric vector
+num_vec <- c(1.5, 2.5, 3.5)
+num_vec
+typeof(num_vec)
+
+# Integer vector
+int_vec <- c(1L, 2L, 3L)
+int_vec
+typeof(int_vec)
+
+# Character vector
+char_vec <- c("a", "b", "c")
+char_vec
+typeof(char_vec)
+
+# Logical vector
+logi_vec <- c(TRUE, FALSE, TRUE)
+logi_vec
+typeof(logi_vec)
+```
+
+> **Definition**: A vector is a basic data structure in R that holds elements of the same type (numeric, integer, character, or logical).
+
+------------------------------------------------------------------------
+
+#### Lists
+
+Lists are sequences of elements that can be of different types.
+
+```{r}
+# List type
+lst <- list(1, "a", TRUE)
+lst
+typeof(lst)
+```
+
+> **Definition**: A list is a data structure in R that can hold elements of different types (numbers, strings, vectors, etc.).
+
+------------------------------------------------------------------------
+
+#### Factors
+
+Factors are used to represent categorical data.
+
+```{r}
+# Factor type
+fctr <- factor(c("low", "medium", "high"))
+fctr
+typeof(fctr)
+```
+
+> **Definition**: A factor is used for categorical data and stores both the values and their levels.
+
+------------------------------------------------------------------------
+
+#### Data Frames
+
+Data frames are used to store tabular data.
+
+```{r}
+# Data Frame type
+df <- data.frame(numbers = c(1, 2, 3), letters = c("a", "b", "c"))
+df
+typeof(df)
+```
+
+> **Definition**: A data frame is a table or 2-dimensional array-like structure in which each column contains values of one variable and each row contains a set of values from each column.
+
+------------------------------------------------------------------------
+
+#### Matrices
+
+Matrices are 2-dimensional arrays with elements of the same type.
+
+```{r}
+# Matrix type
+mat <- matrix(1:9, nrow = 3)
+mat
+typeof(mat)
+```
+
+> **Definition**: A matrix is a 2-dimensional array that holds elements of the same type, arranged in rows and columns.
+
+------------------------------------------------------------------------
+
+#### Arrays
+
+Arrays are multi-dimensional generalizations of matrices.
+
+```{r}
+# Array type
+arr <- array(1:8, dim = c(2, 2, 2))
+arr
+typeof(arr)
+```
+
+> **Definition**: An array is a data structure that can store data in more than two dimensions.
+
+------------------------------------------------------------------------
+
+#### Date and Time
+
+Date and time types are used to store date and time information.
+
+```{r}
+# Date type
+dt <- as.Date("2024-01-01")
+dt
+typeof(dt)
+
+# POSIXct type (Date-time)
+dt_time <- as.POSIXct("2024-01-01 12:34:56")
+dt_time
+typeof(dt_time)
+```
+
+> **Definition**: Date and POSIXct types are used to handle date and time data, respectively. `Date` stores dates without times, and `POSIXct` stores both dates and times. \`\`\`
+
+This R Markdown document provides a brief definition and example for each data type in R. When you knit this document, it will display the values and types of different data structures used in R, along with their definitions.
+
+## Variables and Data Structures
 
 ``` r
 a <- 5  # Creating a variable
