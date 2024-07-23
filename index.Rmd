@@ -1,8 +1,7 @@
 ---
 title: "Basic R Tutorial"
-author: "Theerayut, Chotika"
-date: "2024-07-23"
 output: html_document
+runtime: shiny
 ---
 
 # Introduction to R Programming
@@ -163,10 +162,12 @@ print(divide)
 
 ``` r
 greater <- 5 > 3
+less <- 3 < 5
 equal <- 4 == 4
 not_equal <- 7 != 6
 
 print(greater)
+print(less)
 print(equal)
 print(not_equal)
 ```
@@ -183,7 +184,7 @@ print(or)
 print(not)
 ```
 
-## Loop
+## Statement operation and Loop
 
 ``` r
 # If statement
@@ -244,16 +245,28 @@ sample_data <- tibble(
 print(sample_data)
 ```
 
-Cheat sheet (dplyr): <https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf>
-
 ## Data Import and Export
 
 ### Reading Data
+
+[Download Sample Data](https://raw.githubusercontent.com/aeiwz/R_tutorial/main/src/data/sample_data.csv)
 
 ``` r
 # Reading a CSV file
 data <- read.csv("sample_data.csv")
 print(head(data))
+```
+
+## Visualize Data
+
+``` r
+view(data)
+```
+
+## Add column to data
+
+``` r
+data$Group <- c('A', 'B', 'A', 'B', 'A')
 ```
 
 ### Writing Data
@@ -274,6 +287,8 @@ print(subset_data)
 ```
 
 ### Using dplyr
+
+Cheat sheet (dplyr): <https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf>
 
 ``` r
 library(dplyr)
@@ -298,6 +313,8 @@ print(summary_data)
 ## Data Visualization
 
 ### Basic Plots
+
+Cheat sheet (ggplot2): <https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf>
 
 ``` r
 # Creating a basic plot
@@ -362,6 +379,8 @@ ggplot(data, aes(x=age, y=scores)) +
 ------------------------------------------------------------------------
 
 ### Data Cleaning and Visualization in R
+
+[Download Data](https://github.com/aeiwz/R_tutorial/tree/main/src/Assignment%20data)
 
 1.  **Load the necessary libraries:**
 
