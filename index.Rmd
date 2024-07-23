@@ -438,7 +438,7 @@ print(sample_data)
 
 ``` r
 # Reading a CSV file
-data <- read.csv("sample_data.csv")
+data <- read.csv("https://raw.githubusercontent.com/aeiwz/R_tutorial/main/src/data/sample_data.csv")
 print(head(data))
 ```
 
