@@ -563,92 +563,78 @@ ggplot(data, aes(x=age, y=scores)) +
 
 ------------------------------------------------------------------------
 
-### Data Cleaning and Visualization in R
+# Data Visualization in R
 
-[Download Data](https://github.com/aeiwz/R_tutorial/tree/main/src/Assignment%20data)
 
-1.  **Load the necessary libraries:**
+## Load Libraries
 
-``` r
-# Install the necessary packages if you haven't already
-install.packages(c("tidyverse", "ggplot2"))
-
-# Load the libraries
-library(tidyverse)
+```{r setup, include=TRUE}
+# Load necessary libraries
 library(ggplot2)
+library(datasets)  # Iris dataset is included in this package
+library(stats)     # For PCA function
 ```
 
-2.  **Read the dataset:**
+## Load Data
 
-``` r
-# Replace 'your_dataset.csv' with the path to your actual dataset
-df <- read.csv('your_dataset.csv')
+```{r load-data}
+# Load the Iris dataset
+data(iris)
+head(iris)
 ```
 
-3.  **Remove missing values:**
+## Perform PCA
 
-``` r
-# Remove rows with missing values
-df_clean <- df %>% drop_na()
+```{r pca}
+# Perform PCA on the numeric columns of the Iris dataset
+pca_result <- prcomp(iris[, 1:4], center = TRUE, scale. = TRUE)
 
-# Alternatively, if you want to remove missing values from specific columns only:
-df_clean <- df %>% drop_na(Scores, Income)
+# Display PCA result summary
+summary(pca_result)
 ```
 
-4.  **Correct data types:**
+## PCA Biplot
 
-``` r
-# Convert columns to appropriate data types
-df_clean <- df_clean %>%
-  mutate(
-    ID = as.integer(ID),
-    Name = as.character(Name),
-    Age = as.integer(Age),
-    Height = as.numeric(Height),
-    Weight = as.numeric(Weight),
-    Gender = as.factor(Gender),
-    Income = as.numeric(Income),
-    Scores = as.numeric(Scores)
-  )
+```{r biplot}
+# Biplot of PCA
+biplot(pca_result, main = "PCA Biplot of Iris Dataset")
 ```
 
-5.  **Visualization:**
+## Visualize PCA Results
 
-    -   **Histogram of Age:**
+### PCA Scores Plot
 
-    ``` r
-    ggplot(df_clean, aes(x = Age)) +
-      geom_histogram(binwidth = 5, fill = "blue", color = "black") +
-      labs(title = "Distribution of Age", x = "Age", y = "Frequency")
-    ```
+```{r pca-scores, echo=FALSE}
+# Create a data frame with PCA scores and species for visualization
+pca_scores <- as.data.frame(pca_result$x)
+pca_scores$Species <- iris$Species
 
-    -   **Boxplot of Income by Gender:**
+# Plot the first two principal components
+ggplot(pca_scores, aes(x = PC1, y = PC2, color = Species)) +
+  geom_point(size = 3) +
+  labs(title = "PCA of Iris Dataset",
+       x = "Principal Component 1",
+       y = "Principal Component 2") +
+  theme_minimal()
+```
 
-    ``` r
-    ggplot(df_clean, aes(x = Gender, y = Income, fill = Gender)) +
-      geom_boxplot() +
-      labs(title = "Income Distribution by Gender", x = "Gender", y = "Income")
-    ```
+### Explained Variance
 
-    -   **Scatter plot of Height vs. Weight:**
+```{r explained-variance}
+# Plot the variance explained by each principal component
+explained_variance <- summary(pca_result)$sdev^2
+explained_variance <- explained_variance / sum(explained_variance)
 
-    ``` r
-    ggplot(df_clean, aes(x = Height, y = Weight)) +
-      geom_point(aes(color = Gender)) +
-      labs(title = "Height vs. Weight", x = "Height", y = "Weight")
-    ```
+# Plot the cumulative variance explained
+qplot(x = 1:length(explained_variance), y = cumsum(explained_variance), geom = "line") +
+  labs(title = "Cumulative Explained Variance",
+       x = "Number of Principal Components",
+       y = "Cumulative Explained Variance") +
+  theme_minimal()
+```
 
-    -   **Bar plot of average Scores by Age group:**
+## Conclusion
 
-    ``` r
-    # Create Age groups
-    df_clean <- df_clean %>%
-      mutate(Age_Group = cut(Age, breaks = seq(15, 75, by = 10), right = FALSE, 
-                             labels = paste(seq(15, 65, by = 10), seq(24, 74, by = 10), sep = "-")))
+This tutorial demonstrated how to perform PCA on the Iris dataset and visualize the results. PCA helps in reducing the dimensionality of the dataset while preserving as much variance as possible.
 
-    ggplot(df_clean, aes(x = Age_Group, y = Scores, fill = Age_Group)) +
-      stat_summary(fun = mean, geom = "bar", position = "dodge") +
-      labs(title = "Average Scores by Age Group", x = "Age Group", y = "Average Scores")
-    ```
-
-Replace `'your_dataset.csv'` with the actual path to your dataset. You can adjust the visualization parameters as needed to better fit your data and analysis goals.
+```
