@@ -604,7 +604,7 @@ biplot(pca_result, main = "PCA Biplot of Iris Dataset")
 
 ### PCA Scores Plot
 
-```{r pca-scores, echo=FALSE}
+```{r pca-scores}
 # Create a data frame with PCA scores and species for visualization
 pca_scores <- as.data.frame(pca_result$x)
 pca_scores$Species <- iris$Species
